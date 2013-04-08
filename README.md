@@ -5,7 +5,7 @@ Automated css transformations.
 
 [![Build Status](https://travis-ci.org/intesso/csstransform.png)](https://travis-ci.org/intesso/csstransform)
 
-##Example Usage
+#Example Usage
 csstransform can be used to transform existing css and transform for example it's selectors.
 
 ```javascript
@@ -20,13 +20,12 @@ csstransform can be used to transform existing css and transform for example it'
 		csst.toString(target);
 ```
 
-##How it works
+#How it works
 csstransform uses cssom (a full fledged css parser) to parse the css into an internal css dom. When calling `toString(target)`, the css is formatted with cssbeautify.
 
-##API
+#API
 
-csstransform(css)
-------------------------------
+##csstransform(css)
 Creates a new CSST Object and parses the css file into a cssom Object.
 
 **Parameters**
@@ -37,8 +36,7 @@ Creates a new CSST Object and parses the css file into a cssom Object.
 
 
 
-transformSelectorText(op)
-------------------------------
+##transformSelectorText(op)
 Transforms the css selectors.
 transformSelectorText is chainable. Therefore several Transformation can take place.
 
@@ -73,10 +71,8 @@ If match is missing, it matches every selector. If match is provided with a Stri
 
 
 
-toString(target)
-----------------
+##toString(target)
 writes the the formatted css to the target file.
-
 
 **Parameters**
 **target**:  *String*,  Path to the target file.
@@ -84,3 +80,8 @@ writes the the formatted css to the target file.
 **Returns**
 *String*,  The formatted css.
 
+#Tests
+Run tests with mocha:
+```
+mocha
+```
