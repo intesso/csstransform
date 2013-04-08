@@ -22,7 +22,7 @@ var csstransform = require('../index');
 var csst = csstransform(css);
 csst.transformSelectorText({
 	prepend: '.bootstrap-admin',
-	match: ".modal"
+  exclude: /(.modal-backdrop|.fade)/g
 });
 csst.toString(target);
 ```
@@ -127,6 +127,17 @@ If match is missing, it matches every selector. If match is provided with a Stri
 
 ####exclude
 Opposite of match. The found selectors will be excluded from the transfomration. 
+
+**Example**
+```javascript
+csst.transformSelectorText({
+	prepend: '.bootstrap-admin',
+	exclude: /(.modal-backdrop|.fade)/g
+}).transformSelectorText({
+	replace: ['.bootstrap-admin ', ''],
+	match: ".tooltip"
+});
+```
 
 
 ##toString(target)

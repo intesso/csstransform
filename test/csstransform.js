@@ -118,7 +118,7 @@ describe('CSST.transformSelectorText()', function() {
 			exclude: /(.modal-backdrop|.fade)/g
 		}).transformSelectorText({
 			replace: ['.bootstrap-admin ', ''],
-			match: /(.tooltip)/g
+			match: ".tooltip"
 		});
 
 		csst.toString(target);
