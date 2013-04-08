@@ -51,12 +51,17 @@ module.exports = function(grunt) {
     //grunt.log.writeln(this.target);
     if (!this.data || !this.data.files) return;
 
-    ba = require("./app/server/helpers/bootstrap-admin.js");
     var files = this.data.files;
-    for(target in files) {
+    for (target in files) {
       var src = files[target];
+      var csstransform = require("csstransform");
+      var csst = csstransform(src);
+      csst.transformSelectorText({
+        prepend: '.bootstrap-admin',
+        exclude: /(.modal-backdrop|.fade)/g
+      });
+      css.toString(target);
       grunt.log.writeln("File " + src + " -> " + target + " created.");
-      ba.prependCssSelectors(src, target, ".bootstrap-admin");
     }
   });
 

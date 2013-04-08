@@ -1,7 +1,7 @@
 {
   "name": "csstransform",
   "description": "Automated CSS Transformations",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Andi Neck <andi.neck@intesso.com>",
   "contributors": [
     {
@@ -26,5 +26,8 @@
   "main": "index",
   "engines": {
     "node": "*"
+  },
+    "scripts": {
+    "test": "node_modules/mocha/bin/mocha"
   }
 }
