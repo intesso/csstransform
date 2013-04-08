@@ -1,6 +1,3 @@
-var settings = require("./settings");
-var port = (settings.webserver.port) ? settings.webserver.port : 3000;
-
 module.exports = function(grunt) {
   grunt.initConfig({
     less: {
@@ -20,32 +17,10 @@ module.exports = function(grunt) {
           "public/css/admin/responsive-admin.css": "public/css/admin/responsive.css"
         }
       }
-    },
-    watch: {
-      all: {
-        files: ["app/views/**/*", "app/styles/**/*", "vendor/**/*", "public/img/**/*", "app/client/**/*"],
-        tasks: ["less", "csstransform", "reload"],
-        options: {
-          nospawn: true,
-          interrupt: false,
-          debounceDelay: 250
-        }
-      }
-    },
-    reload: {
-      port: 35729,
-      liveReload: {},
-      proxy: {
-        host: "localhost",
-        port: port
-      }
     }
   });
 
-  grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks("grunt-contrib-less");
-  grunt.loadNpmTasks("grunt-reload");
-
 
   grunt.registerMultiTask('csstransform', 'Admin Bootstrap build post processing...', function() {
     //grunt.log.writeln(this.target);
@@ -60,11 +35,10 @@ module.exports = function(grunt) {
         prepend: '.bootstrap-admin',
         exclude: /(.modal-backdrop|.fade)/g
       });
-      css.toString(target);
+      csst.toString(target);
       grunt.log.writeln("File " + src + " -> " + target + " created.");
     }
   });
 
-  grunt.registerTask("build", ["less", "csstransform", "removelogging", "min"]);
-  grunt.registerTask("default", ["less", "csstransform", "reload", "watch"]);
+  grunt.registerTask("default", ["less", "csstransform"]);
 };
