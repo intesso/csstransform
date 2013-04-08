@@ -29,8 +29,11 @@ csstransform(css)
 ------------------------------
 Creates a new CSST Object and parses the css file into a cssom Object.
 
- * @param  {String} css Path to the css file to read
- * @return {Object}     the new created CCST Object that holds the parsed css dom for further transformations.
+**Parameters**
+**css**:  *String*,  css Path to the css file to read
+
+**Returns**
+*Object*,  the new created CCST Object that holds the parsed css dom for further transformations.
 
 
 
@@ -40,38 +43,22 @@ Transforms the css selectors.
 
 
 **Parameters**
-
 **op**:  *Object*,  {[match,] [append,] [prepend,] [replace]}
 
 **Returns**
-
 *Object*,  this CSST object for function chanining.
 
-toString(target)
-----------------
-writes the the formatted css to the target file.
-
-
-**Parameters**
-
-**target**:  *String*,  Path to the target file.
-
-**Returns**
-
-*String*,  The formatted css.
-
-
-
-### transformSelectorText 
+**Description**
 transformSelectorText is chainable. Therefore several Transformation can take place.
 
-Options:
+op Options:
 {	prepend: String,
 	append: String,
 	replace: [String, String],
 	match: String or Regex
 }
 
+op Options Description:
 ####prepend
 prepend will prepend the given string to the selector.
 
@@ -83,3 +70,17 @@ replace is an Array where the first element is the String that should be replace
 
 ####match
 If match is missing, it matches every selector. If match is provided with a String value, it will be used as contains(). If match is a Regex, it will directly be used in the .match(regex) function.
+
+
+
+toString(target)
+----------------
+writes the the formatted css to the target file.
+
+
+**Parameters**
+**target**:  *String*,  Path to the target file.
+
+**Returns**
+*String*,  The formatted css.
+
