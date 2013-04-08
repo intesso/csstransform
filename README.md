@@ -9,16 +9,16 @@ Automated css transformations.
 csstransform can be used to transform existing css and transform for example it's selectors.
 
 ```javascript
-		var css = __dirname + '/input/bootstrap.css';
-		var target = __dirname + '/output/bootstrap-match-string.css';
-		
-		var csstransform = require('../index');
-		var csst = csstransform(css);
-		csst.transformSelectorText({
-			prepend: '.bootstrap-admin',
-			match: ".modal"
-		});
-		csst.toString(target);
+var css = __dirname + '/input/bootstrap.css';
+var target = __dirname + '/output/bootstrap-match-string.css';
+
+var csstransform = require('../index');
+var csst = csstransform(css);
+csst.transformSelectorText({
+	prepend: '.bootstrap-admin',
+	match: ".modal"
+});
+csst.toString(target);
 ```
 
 #How it works
