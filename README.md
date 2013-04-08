@@ -5,6 +5,12 @@ Automated css transformations.
 
 [![Build Status](https://travis-ci.org/intesso/csstransform.png)](https://travis-ci.org/intesso/csstransform)
 
+#Installation
+```bash
+npm install csstransform --save-dev
+```
+
+
 #Example Usage
 csstransform can be used to transform existing css and transform for example it's selectors.
 
