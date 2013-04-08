@@ -1,0 +1,30 @@
+{
+  "name": "csstransform",
+  "description": "Automated CSS Transformations",
+  "version": "0.0.1",
+  "author": "Andi Neck <andi.neck@intesso.com>",
+  "contributors": [
+    {
+      "name": "Andi Neck",
+      "email": "andi.neck@intesso.com"
+    }
+  ],
+  "dependencies": {
+    "cssom": "git://github.com/intesso/CSSOM.git#gh-pages",
+    "cssbeautify": "~0.3.0"
+  },
+  "devDependencies": {
+    "mocha": "~1.8.2",
+    "async": "~0.2.6",
+    "lazy": "~1.0.9"
+  },
+  "keywords": [
+    "css",
+    "transformation"
+  ],
+  "repository": "git://github.com/intesso/csstransform",
+  "main": "index",
+  "engines": {
+    "node": "*"
+  }
+}
