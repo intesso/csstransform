@@ -9,13 +9,14 @@ Automated css transformations.
 csstransform can be used to transform existing css and transform for example it's selectors.
 
 ```javascript
-		var path = require('path');
-		var css = path.normalize(__dirname + '/input/bootstrap.css');
-		var target = path.normalize(__dirname + '/output/bootstrap-transformed.css');
+		var css = __dirname + '/input/bootstrap.css';
+		var target = __dirname + '/output/bootstrap-match-string.css';
+		
 		var csstransform = require('../index');
 		var csst = csstransform(css);
 		csst.transformSelectorText({
-			prepend: '.bootstrap-admin'
+			prepend: '.bootstrap-admin',
+			match: ".modal"
 		});
 		csst.toString(target);
 ```
@@ -41,7 +42,7 @@ Transforms the css selectors.
 transformSelectorText is chainable. Therefore several Transformation can take place.
 
 **Parameters**
-**op**:  *Object*,  {[match,] [append,] [prepend,] [replace]}
+**op**:  *Object*,  {[match,] [exclude,] [append,] [prepend,] [replace]}
 
 **Returns**
 *Object*,  this CSST object for function chanining.
@@ -52,7 +53,8 @@ transformSelectorText is chainable. Therefore several Transformation can take pl
 	prepend: String,
 	append: String,
 	replace: [String, String],
-	match: String or Regex
+	match: String or Regex,
+	exclude: String or Regex
 }
 ```
 
@@ -69,6 +71,8 @@ replace is an Array where the first element is the String that should be replace
 ####match
 If match is missing, it matches every selector. If match is provided with a String value, it will be used as contains(). If match is a Regex, it will directly be used in the .match(regex) function.
 
+####exclude
+Opposite of match. The found selectors will be excluded from the transfomration. 
 
 
 ##toString(target)
@@ -79,6 +83,9 @@ writes the the formatted css to the target file.
 
 **Returns**
 *String*,  The formatted css.
+
+
+
 
 #Tests
 Run tests with mocha:
