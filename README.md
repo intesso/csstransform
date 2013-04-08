@@ -40,7 +40,7 @@ Creates a new CSST Object and parses the css file into a cssom Object.
 transformSelectorText(op)
 ------------------------------
 Transforms the css selectors.
-
+transformSelectorText is chainable. Therefore several Transformation can take place.
 
 **Parameters**
 **op**:  *Object*,  {[match,] [append,] [prepend,] [replace]}
@@ -48,17 +48,17 @@ Transforms the css selectors.
 **Returns**
 *Object*,  this CSST object for function chanining.
 
-**Description**
-transformSelectorText is chainable. Therefore several Transformation can take place.
-
-op Options:
-{	prepend: String,
+**op Object**
+```
+{	
+	prepend: String,
 	append: String,
 	replace: [String, String],
 	match: String or Regex
 }
+```
 
-op Options Description:
+**op Object Description**
 ####prepend
 prepend will prepend the given string to the selector.
 
