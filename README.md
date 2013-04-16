@@ -21,13 +21,29 @@ var target = __dirname + '/output/bootstrap-match-string.css';
 var csstransform = require('../index');
 var csst = csstransform(css);
 csst.transformSelectorText({
-	prepend: '.bootstrap-admin',
+  prepend: '.bootstrap-admin',
   exclude: /(.modal-backdrop|.fade)/g
 });
 csst.toString(target);
 ```
 
-We use it for postprocessing the compiled bootstrap.css files. You can easily create a Grunt task like this:
+We use it for post processing the compiled bootstrap.css files. 
+The transformation is done like this:
+```javascript
+var csstransform = require("csstransform");
+var csst = csstransform(src);
+csst.transformSelectorText({
+  prepend: '.bootstrap-admin',
+  exclude: /(.modal-backdrop|.fade)/g
+}).transformSelectorText({
+  replace: ['.bootstrap-admin body', 'body .bootstrap-admin']
+}).transformSelectorText({
+  replace: ['.bootstrap-admin html', 'html .bootstrap-admin']
+});
+csst.toString(target);
+```
+
+With this you can easily create a Grunt task like this:
 ```javascript
 module.exports = function(grunt) {
   grunt.initConfig({
@@ -65,6 +81,10 @@ module.exports = function(grunt) {
       csst.transformSelectorText({
         prepend: '.bootstrap-admin',
         exclude: /(.modal-backdrop|.fade)/g
+      }).transformSelectorText({
+        replace: ['.bootstrap-admin body', 'body .bootstrap-admin']
+      }).transformSelectorText({
+        replace: ['.bootstrap-admin html', 'html .bootstrap-admin']
       });
       csst.toString(target);
       grunt.log.writeln("File " + src + " -> " + target + " created.");
@@ -74,6 +94,18 @@ module.exports = function(grunt) {
   grunt.registerTask("default", ["less", "csstransform"]);
 };
 ```
+
+#Usage for twitter bootstrap
+Note: The Gruntfile above is how we post process twitter bootstrap in order to allow different bootstrap builds on the same page.
+Just wrap the elements that use the custom bootstrap build in a div like this:
+
+```html
+<div class="bootstrap-admin">
+  ... inline editing that uses the post processed twitter bootstrap build.
+</div>
+```
+With this, the custom bootstrap does not interfere with your custom styles. 
+The custom bootstrap styles are only applied within the elements inside of the elements with the class `bootstrap-admin`.
 
 #How it works
 csstransform uses cssom (a full fledged css parser) to parse the css into an internal css dom. When calling `toString(target)`, the css is formatted with cssbeautify.
