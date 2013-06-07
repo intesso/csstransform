@@ -4,6 +4,7 @@
 Automated css transformations.
 
 [![Build Status](https://travis-ci.org/intesso/csstransform.png)](https://travis-ci.org/intesso/csstransform)
+[![NPM version](https://badge.fury.io/js/csstransform.png)](http://badge.fury.io/js/csstransform)
 
 #Installation
 ```bash
